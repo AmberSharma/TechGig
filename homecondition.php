@@ -37,7 +37,7 @@ Now if Josheph's house number is 4
 His Condition is bad (0).
 
 
-
+1 1 0 0 1
  
 -->
 <?php
