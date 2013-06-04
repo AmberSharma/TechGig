@@ -36,24 +36,31 @@ For above example answer would be 2 steps. [ Minimum number of steps ]
    function get_order($input1)
 	{
 		$count = 0;
-		
+		$k =count($input1);
 		for($i =0 ; $i < count($input1) ; $i ++)
 		{
-			if($input1[$i] <> ($input1[$i + 1]+1))
+			if($input1[$i] == $k)
 			{
 				for($j =$i+1 ;$j < count($input1);$j++)
 				{
-					if($input1[$j] == ($input1[$i]-1))
+					if($input1[$j] == ($k-1))
 					{
 						$a = (array_splice($input1,$j , 1));
 						array_unshift($input1,$a[0]);
 						$count++;
 						
+						
 						echo "<pre>";
-						print_r($input1);	
+						print_r($input1);
+						break;	
 					}
 				}
-			$i++ ;
+				if($k <> 1)
+				{
+					$i = -1;
+					$k --;
+				}
+			
 				
 			}
 			
@@ -62,6 +69,6 @@ For above example answer would be 2 steps. [ Minimum number of steps ]
 		
 	}
 
-$b = get_order(array(2,5,1,4,3));
+$b = get_order(array(1,3,2));
 echo $b;
 ?>
