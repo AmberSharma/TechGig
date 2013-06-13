@@ -26,7 +26,7 @@ Your output will be an integer type value that returns Minimum number of steps (
 
 Examples
 
-
+1,3,2=====>>>>>2,1,3=====>>>>>1,2,3
 
 For above example answer would be 2 steps. [ Minimum number of steps ]	
 
@@ -35,40 +35,52 @@ For above example answer would be 2 steps. [ Minimum number of steps ]
 <?php
    function get_order($input1)
 	{
+		$a = 1;
+		for($i =0 ; $i < count($input1) ; $i++)
+		{
+			if($input1[$i] == $a)
+			{
+				$i = -1;
+				$a ++;
+			}
+		}
+		
 		$count = 0;
 		$k =count($input1);
-		for($i =0 ; $i < count($input1) ; $i ++)
+		if($a == $k+1)
 		{
-			if($input1[$i] == $k)
+			for($i =0 ; $i < count($input1) ; $i ++)
 			{
-				for($j =$i+1 ;$j < count($input1);$j++)
+				if($input1[$i] == $k)
 				{
-					if($input1[$j] == ($k-1))
+					for($j =$i+1 ;$j < count($input1);$j++)
 					{
-						$a = (array_splice($input1,$j , 1));
-						array_unshift($input1,$a[0]);
-						$count++;
-						
-						
-						echo "<pre>";
-						print_r($input1);
-						break;	
+						if($input1[$j] == ($k-1))
+						{
+							$a = (array_splice($input1,$j , 1));
+							array_unshift($input1,$a[0]);
+							$count++;
+							echo "<pre>";
+							print_r($input1);
+							break;	
+						}
 					}
-				}
-				if($k <> 1)
-				{
-					$i = -1;
-					$k --;
-				}
+					if($k <> 1)
+					{
+						$i = -1;
+						$k --;
+					}	
 			
-				
+				}
 			}
-			
+			return $count;
 		}
-		return $count;
-		
+		else
+		{
+			return -1;
+		}
 	}
 
-$b = get_order(array(1,3,2));
+$b = get_order(array(4,3,2,1,5));
 echo $b;
 ?>
